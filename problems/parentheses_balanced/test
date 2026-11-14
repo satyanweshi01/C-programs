@@ -1,0 +1,21 @@
+CFLAGS = -Wno-implicit-function-declaration #for more common parameter during compilation 
+
+all: final
+
+final: test_for_is_param_bal.o is_parentheses_balanced.o
+	@echo "Linking and producing the final program"
+	gcc $(CFLAGS) test_for_is_param_bal.o is_parentheses_balanced.o -o ../bin/test_for_is_param_bal
+	rm test_for_is_param_bal.o is_parentheses_balanced.o
+
+test_for_is_param_bal.o: test_for_is_param_bal.c 
+	@echo "Compiling the test_for_is_param_bal.c file"
+	gcc $(CFLAGS) -c test_for_is_param_bal.c
+
+is_parentheses_balanced.o: is_parentheses_balanced.c 
+	@echo "Compiling the is_parentheses_balanced.c file"
+	gcc $(CFLAGS) -c is_parentheses_balanced.c
+
+clean: 
+	@echo "Removing everything except the source files"
+	rm test_for_is_param_bal.o is_parentheses_balanced.o
+
